@@ -15,7 +15,7 @@ client = OpenAI(
    api_key=os.environ.get("OPENAI_API_KEY"),
  )
 
-name = "Finn"
+name = "Raj"
 
 response = client.chat.completions.create(
   model="gpt-3.5-turbo",
@@ -41,7 +41,7 @@ def schedule_message():
     try:
         message = client.messages.create(
                 messaging_service_sid = os.getenv('TWILIO_MSG_SRVC_SID'),
-                to = +6402109064872,
+                to = my_phone_num,
                 body = f'{response.choices[0].message.content}',
                 schedule_type = 'fixed',
                 send_at = scheduled_time_utc
