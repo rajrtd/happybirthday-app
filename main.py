@@ -15,7 +15,7 @@ client = OpenAI(
    api_key=os.environ.get("OPENAI_API_KEY"),
  )
 
-name = "Raj"
+name = "Finn"
 
 response = client.chat.completions.create(
   model="gpt-3.5-turbo",
@@ -31,7 +31,7 @@ twilio_phone_num = os.getenv("TWILIO_PHONE_NUMBER")
 pacific_auck = pytz.timezone('Pacific/Auckland')
 client = Client(account_sid, auth_token)
 
-scheduled_time = datetime(2023, 12, 16, 00, 31, 10)
+scheduled_time = datetime(2023, 12, 18, 22, 40, 10)
 scheduled_time_utc = scheduled_time.astimezone(pytz.utc)
 
 #Import SQL basemodel stuff, create friend data type to have name and phone number, pass that data type thru put and schedule_message
@@ -41,12 +41,12 @@ def schedule_message():
     try:
         message = client.messages.create(
                 messaging_service_sid = os.getenv('TWILIO_MSG_SRVC_SID'),
-                to = my_phone_num,
+                to = +6402109064872,
                 body = f'{response.choices[0].message.content}',
                 schedule_type = 'fixed',
                 send_at = scheduled_time_utc
             )
-        print(message.sid)
+        print(message.sid, f'{response.choices[0].message.content}')
     except TwilioRestException as e:
         print(e)
         raise
