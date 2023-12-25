@@ -34,7 +34,10 @@ client = Client(account_sid, auth_token)
 scheduled_time = datetime(2023, 12, 18, 22, 40, 10)
 scheduled_time_utc = scheduled_time.astimezone(pytz.utc)
 
-#Import SQL basemodel stuff, create friend data type to have name and phone number, pass that data type thru put and schedule_message
+# TODO:
+# Import SQL basemodel stuff, create friend data type to have name and phone number, pass that data type thru put and schedule_message
+# If a phone number already exists, people can enter their name and phone number again, and a delete button will pop up and the add button 
+# will be unclickable, so they can't add their bday again, and they'll receive an automated birthday message.
 
 @app.put("/")
 def schedule_message():
